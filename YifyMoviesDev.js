@@ -12,10 +12,11 @@ if (json.data && json.data.movies && json.data.movies.length > 0) {
     var results = [];
     json.data.movies.forEach(function (movie) {
         movie.torrents.forEach(function (torrent) {
+            var quality = torrent.quality;
             var seederCount = torrent.seeds;
             var magnetLink = torrent.url;
             if (/[xXhH]265/i.test(magnetLink)) {var codec = 'H265';};
-            var item = magnetLink + " - " + '' + " - " + seederCount + " - " + codec;
+            var item = magnetLink + " - " + quality + " - " + seederCount + " - " + codec || 'Unknown';
             results.push(item);
         });
     });
