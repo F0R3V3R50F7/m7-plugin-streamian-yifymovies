@@ -14,7 +14,8 @@ if (json.data && json.data.movies && json.data.movies.length > 0) {
         movie.torrents.forEach(function (torrent) {
             var seederCount = torrent.seeds;
             var magnetLink = torrent.url;
-            var item = magnetLink + " - " + '' + " - " + seederCount;
+            if (/[xXhH]265/i.test(magnetLink)) {var codec = 'H265';};
+            var item = magnetLink + " - " + '' + " - " + seederCount + " - " + codec;
             results.push(item);
         });
     });
