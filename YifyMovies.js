@@ -15,8 +15,8 @@ if (json.data && json.data.movies && json.data.movies.length > 0) {
             var quality = torrent.quality;
             var seederCount = torrent.seeds;
             var magnetLink = torrent.url;
-            if (service.H265Filter && /[xXhH]265/i.test(magnetLink)) {return [];}
-            var item = magnetLink + " - " + quality + " - " + seederCount;
+            if (/[xXhH]265/i.test(magnetLink)) {var codec = 'H265';};
+            var item = magnetLink + " - " + quality + " - " + seederCount + " - " + codec || 'Unknown';
             results.push(item);
         });
     });
